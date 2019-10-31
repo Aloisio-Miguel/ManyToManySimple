@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,6 +14,9 @@ public class Pessoa {
 
     @Column(nullable = false, length = 50)
     private String nome;
+
+    @Column(nullable = true, length = 10)
+    private long cracha;
 
     // - Relação ManyToMany:
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -31,6 +34,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
+    public Pessoa(String nome, long cracha) {
+        this.nome = nome;
+        this.cracha = cracha;
+    }
+
     public long getId() {
         return id;
     }
@@ -45,6 +53,14 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setCracha(long cracha){
+        this.cracha = cracha;
+    }
+
+    public long getCracha(){
+        return cracha;
     }
 
     public Set<Projeto> getProjetos() {
